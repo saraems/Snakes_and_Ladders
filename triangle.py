@@ -9,11 +9,3 @@ if variable_1 + variable_2 > variable_3 and variable_2 + variable_1 > variable_3
     print("Yes, it is possible to built a triangle with yours sticks!")
 else:
     print("Unfortunetally you could not built a triangle made of such sticks ")
-
-
-# except ValueError:
-    # print("Wrong input, try one more time")
-
-#except IndexError:
-   # print("Wrong input, try one more time")
-    #continue
