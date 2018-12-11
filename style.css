@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    font-family: 'Gamja Flower', cursive;
+}
+
+div.header {
+    font-size: 30px;
+    margin:0.5%;
+}
+
+.gameField {
+    height:90%;
+    width: 75%;
+    background-color: lightgreen;
+    display: flex;
+    position: absolute;
+    margin-top: 5%;
+
+}
+
+.game_panel {
+    width: 30%;
+    border-right: 7px solid white;
+
+}
+
+.game_board {
+    width: 70%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.game__panel_turn_indicator {
+    box-sizing: border-box;
+    height: 25%;
+    padding: 30px 30px 10px 30px;
+    font-size: 27px;
+    text-align: center;
+}
+
+.game__panel_next_player {
+    height: 8%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5%;
+}
+
+.next_player_btn {
+    height: 60%;
+    width: 50%;
+    padding: 5px;
+    color: white;
+    background-color: deeppink;
+    border: none;
+    font-family: 'Gamja Flower', cursive;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+
+.game__panel_roll_btn_container {
+    display: flex;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.roll {
+    courser: pointer;
+    background-color: blue;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 3px 0 rgba(0,0,0,0.19);
+    border: none;
+    height: 80%;
+    width: 80%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    font-size: 20px;
+    border-radius: 4px;
+    font-family: 'Gamja Flower', cursive;
+}
+
+.game__dice_container {
+    height: 20%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.firstPlayer {
+
+    background-color: deeppink;
+    color: white;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
+    margin: 4px;
+    position: absolute;
+    bottom: 62px;
+    left: 8px;
+
+}
+
+.secondPlayer {
+
+    background-color: blue;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
+    margin: 4px;
+    position: absolute;
+    bottom: 87px;
+    left: 8px;
+}
+
+.dice {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 3px 0 rgba(0,0,0,0.19);
+    margin: 5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+#whoseTurn {
+    color: blue;
+    font-weight: 700;
+}
+
+.game__panel_information_after_roll_container {
+    box-sizing: border-box;
+    height: 30%;
+    padding: 0 30px 30px 30px;
+    font-size: 25px;
+    text-align: center;
+}
+
+
+.game_board__board_field {
+    height: 480px;
+    width: 480px;
+    background-image: url("snakesandladdersboard.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+}
+
