@@ -2,43 +2,12 @@
 let firstPlayerPosition = 0;
 let secondPlayerPosition = 0;
 
-let fieldMapContainer  = [];
-
-let snakes  = [61, 46, 49, 62, 64, 74, 89, 92, 95, 99];
-let ladders = [ 2, 7, 8, 15, 21, 28, 36, 51, 71, 78, 87];
+let previousPositionFirstPlayer = 0;
+let previousPositionSecondPlayer = 0;
 
 
-// snake field nr : makes you go on field nr
-// 16 : 6
-// 46 : 25
-// 49 : 11
-// 62 : 19
-// 64 : 60
-// 74 :53
-// 89 : 68
-// 92 : 88
-// 95 : 75
-// 99 : 80
-
-// 61 46 49 62 64 74 89 92 95 99
-
-
-// ladder field : go on field nr
-//
-// 2 : 38
-// 7 : 14
-// 8 : 31
-// 15 : 26
-// 21 : 42
-// 28 : 84
-// 36 : 44
-// 51 : 67
-// 71 : 91
-// 78 : 98
-// 87 : 94
-
-// 2 7 8 15 21 28 36 51 71 78 87
-
+let snakes  = [{16: 6}, {46: 25}, {49: 11}, {62: 19}, {64: 60}, {74: 53}, {89: 68}, {92: 88}, {95: 75}, {99: 80}];
+let ladders = [{2:38}, {7: 14}, {8: 31}, {15:26}, {21: 42}, {28: 84}, {36: 44}, {51: 67}, {71: 91}, {78: 98}, {87: 94}];
 
 let rollfirstDice;
 let rollsecondDice;
@@ -51,12 +20,15 @@ const dice2 = document.querySelector(".dice2");
 let whoseTurnSpan = document.querySelector("#whoseTurn");
 let whoseTurn = 1;
 
-let moveForward;
+let moveForward = 0;
 
 let btnRoll= document.querySelector("button.roll");
 let nextPlayerBtn = document.querySelector("button.next_player_btn");
 
 let informationAfterRollContainer = document.querySelector(".game__panel_information_after_roll_container");
+
+const firstPlayersPiece = document.querySelector('.firstPlayer');
+const secondPlayersPiece = document.querySelector('.secondPlayer');
 
 
 const diceRoll = function () {
@@ -64,10 +36,55 @@ const diceRoll = function () {
 };
 
 
+function changeDicePrint(rollfirstDice, rollsecondDice) {
+
+    if (rollfirstDice === 1) {
+        dice1.style.backgroundImage = "url('dices/dice_one.jpg')"
+    } else if (rollfirstDice === 2) {
+        dice1.style.backgroundImage = "url('dices/dice_two.jpg')"
+    } else if (rollfirstDice === 3) {
+        dice1.style.backgroundImage = "url('dices/dice_tree.jpg')"
+    } else if (rollfirstDice === 4) {
+        dice1.style.backgroundImage = "url('dices/dice_four.jpg')"
+    } else if (rollfirstDice === 5) {
+        dice1.style.backgroundImage = "url('dices/dice_five.jpg')"
+    } else if (rollfirstDice === 6) {
+        dice1.style.backgroundImage = "url('dices/dice_six.jpg')"
+    }
+
+    if (rollsecondDice === 1) {
+        dice2.style.backgroundImage = "url('dices/dice_one.jpg')"
+    } else if (rollsecondDice === 2) {
+        dice2.style.backgroundImage = "url('dices/dice_two.jpg')"
+    } else if (rollsecondDice === 3) {
+        dice2.style.backgroundImage = "url('dices/dice_tree.jpg')"
+    } else if (rollsecondDice === 4) {
+        dice2.style.backgroundImage = "url('dices/dice_four.jpg')"
+    } else if (rollsecondDice === 5) {
+        dice2.style.backgroundImage = "url('dices/dice_five.jpg')"
+    } else if (rollsecondDice === 6) {
+        dice2.style.backgroundImage = "url('dices/dice_six.jpg')"
+    }
+}
 
 
+
+
+function movePlayersPiece(piece, playersPosition,previousPosition) {
+
+    let fieldToMoveOn = smallDivsTab[playersPosition - 1];
+    fieldToMoveOn.appendChild(piece);
+
+    if (smallDivsTab[previousPosition].firstElementChild) {
+
+        smallDivsTab[previousPosition].firstElementChild.remove();
+
+    }
+}
 
 nextPlayerBtn.addEventListener("click", function (e) {
+
+
 
     if (whoseTurn === 1 && playerRolledIsBlocked === true) {
 
@@ -83,8 +100,8 @@ nextPlayerBtn.addEventListener("click", function (e) {
 
         nextPlayerBtn.style.backgroundColor = "deeppink";
 
-        whoseTurn = 2;
         playerRolledIsBlocked = false;
+        moveForward = 0;
 
      } else if (whoseTurn === 2 && playerRolledIsBlocked === true) {
 
@@ -98,8 +115,8 @@ nextPlayerBtn.addEventListener("click", function (e) {
 
         nextPlayerBtn.style.backgroundColor = "blue";
 
-        whoseTurn = 1;
         playerRolledIsBlocked = false;
+        moveForward = 0;
      }
 });
 
@@ -114,49 +131,39 @@ btnRoll.addEventListener("click", function() {
        rollfirstDice = diceRoll();
        rollsecondDice = diceRoll();
 
+
        console.log(rollfirstDice + "first");
        console.log(rollsecondDice + "first");
 
-       moveForward = rollfirstDice + rollsecondDice;
+       moveForward = moveForward + rollfirstDice + rollsecondDice;
+
+       previousPositionFirstPlayer = firstPlayerPosition;
+       firstPlayerPosition += (rollfirstDice + rollsecondDice);
 
 
-       if (rollfirstDice === 1) {
-           dice1.style.backgroundImage = "url('dices/dice_one.jpg')"
-       } else if (rollfirstDice === 2) {
-           dice1.style.backgroundImage = "url('dices/dice_two.jpg')"
-       } else if (rollfirstDice === 3) {
-           dice1.style.backgroundImage = "url('dices/dice_tree.jpg')"
-       } else if (rollfirstDice === 4) {
-           dice1.style.backgroundImage = "url('dices/dice_four.jpg')"
-       } else if (rollfirstDice === 5) {
-           dice1.style.backgroundImage = "url('dices/dice_five.jpg')"
-       } else if (rollfirstDice === 6) {
-           dice1.style.backgroundImage = "url('dices/dice_six.jpg')"
+
+       changeDicePrint(rollfirstDice, rollsecondDice);
+
+
+       if (rollfirstDice === rollsecondDice) {
+
+
+           informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${moveForward} </span></p>Oh, you got two times <span class="move_forward">${rollfirstDice}</span>, congtats! Roll your dice once more then.`;
+
+           whoseTurn = 1;
+           playerRolledIsBlocked = false;
+
+       } else {
+
+
+           informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${moveForward}</span></p>You are moving <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${firstPlayerPosition}</span>.`;
+           movePlayersPiece(firstPlayersPiece, firstPlayerPosition, previousPositionFirstPlayer);
+
+           whoseTurn = 2;
+           playerRolledIsBlocked = true;
+
+
        }
-
-       if (rollsecondDice === 1) {
-           dice2.style.backgroundImage = "url('dices/dice_one.jpg')"
-       } else if (rollsecondDice === 2) {
-           dice2.style.backgroundImage = "url('dices/dice_two.jpg')"
-       } else if (rollsecondDice === 3) {
-           dice2.style.backgroundImage = "url('dices/dice_tree.jpg')"
-       } else if (rollsecondDice === 4) {
-           dice2.style.backgroundImage = "url('dices/dice_four.jpg')"
-       } else if (rollsecondDice === 5) {
-           dice2.style.backgroundImage = "url('dices/dice_five.jpg')"
-       } else if (rollsecondDice === 6) {
-           dice2.style.backgroundImage = "url('dices/dice_six.jpg')"
-       }
-
-       firstPlayerPosition += moveForward;
-
-       informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${moveForward} </span></p><br>You are moving <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${firstPlayerPosition}</span>.`;
-
-
-       moveForward = 0;
-       whoseTurn = 2;
-
-       playerRolledIsBlocked = true;
 
    } else if (whoseTurn === 2 && playerRolledIsBlocked === false) {
 
@@ -167,53 +174,38 @@ btnRoll.addEventListener("click", function() {
        console.log(rollfirstDice + "second");
        console.log(rollsecondDice + "second");
 
-       moveForward = rollfirstDice + rollsecondDice;
+       moveForward += (rollfirstDice + rollsecondDice);
+
+       previousPositionSecondPlayer = secondPlayerPosition;
+       secondPlayerPosition += (rollfirstDice + rollsecondDice);
 
 
-       if (rollfirstDice === 1) {
-           dice1.style.backgroundImage = "url('dices/dice_one.jpg')"
-       } else if (rollfirstDice === 2) {
-           dice1.style.backgroundImage = "url('dices/dice_two.jpg')"
-       } else if (rollfirstDice === 3) {
-           dice1.style.backgroundImage = "url('dices/dice_tree.jpg')"
-       } else if (rollfirstDice === 4) {
-           dice1.style.backgroundImage = "url('dices/dice_four.jpg')"
-       } else if (rollfirstDice === 5) {
-           dice1.style.backgroundImage = "url('dices/dice_five.jpg')"
-       } else if (rollfirstDice === 6) {
-           dice1.style.backgroundImage = "url('dices/dice_six.jpg')"
+
+       changeDicePrint(rollfirstDice, rollsecondDice);
+
+
+       if (rollfirstDice === rollsecondDice) {
+
+           informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${moveForward} </span></p>Oh, you got two times <span class="move_forward">${rollfirstDice}</span>, congtats! Roll your dice once more then.`;
+
+           whoseTurn = 2;
+           playerRolledIsBlocked = false;
+
+
+       } else {
+
+           informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${moveForward}</span></p>You are moving <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${secondPlayerPosition}</span>.`;
+           movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
+
+           whoseTurn = 1;
+           playerRolledIsBlocked = true;
+
        }
-
-       if (rollsecondDice === 1) {
-           dice2.style.backgroundImage = "url('dices/dice_one.jpg')"
-       } else if (rollsecondDice === 2) {
-           dice2.style.backgroundImage = "url('dices/dice_two.jpg')"
-       } else if (rollsecondDice === 3) {
-           dice2.style.backgroundImage = "url('dices/dice_tree.jpg')"
-       } else if (rollsecondDice === 4) {
-           dice2.style.backgroundImage = "url('dices/dice_four.jpg')"
-       } else if (rollsecondDice === 5) {
-           dice2.style.backgroundImage = "url('dices/dice_five.jpg')"
-       } else if (rollsecondDice === 6) {
-           dice2.style.backgroundImage = "url('dices/dice_six.jpg')"
-       }
-
-       secondPlayerPosition += moveForward;
-
-       informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${moveForward}</span></p><br>You are moving <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${secondPlayerPosition}</span>.`;
-
-
-       moveForward = 0;
-       whoseTurn = 1;
-
-       playerRolledIsBlocked = true;
-
    }
 });
 
 
-const firstPlayersPiece = document.querySelector('.firstPlayer');
-const secondPlayersPiece = document.querySelector('.secondPlayer');
+
 
 
 let gameBoard = document.querySelector("div.game_board__board_field");
@@ -252,6 +244,7 @@ for(let i = 0; i < 10; i++) {
 
 bigDivTabb.reverse();
 let smallDivsIdsCounter = 0;
+let smallDivsTab = [];
 
 for (let i = 0; i < bigDivTabb.length; i++) {
 
@@ -263,14 +256,55 @@ for (let i = 0; i < bigDivTabb.length; i++) {
         smallDiv.style.height = 48 + "px";
         smallDiv.style.width = 48 + "px";
 
+        smallDiv.style.display = "flex";
+        smallDiv.style.justifyContent = "center";
+        smallDiv.style.alignItems = "center";
+
         smallDivsIdsCounter += 1;
         smallDiv.id = smallDivsIdsCounter;
 
-        bigDivTabb[i].appendChild(smallDiv)
+        bigDivTabb[i].appendChild(smallDiv);
+        smallDivsTab.push(smallDiv)
     }
-
-
 }
+
+// Marking snake-fields and adding field on which player should move after stepping on it
+
+
+for(let i = 0; i < smallDivsTab.length ; i++) {
+
+    for (let key in snakes[i]) {
+
+        let k = snakes[i];
+        smallDivsTab[key -1].dataset.snake = k[key];
+         }
+}
+
+
+// Marking ladder-fields and adding field on which player should move after stepping on it
+
+
+for(let i = 0; i < smallDivsTab.length ; i++) {
+
+    for (let key in ladders[i]) {
+
+        let k = ladders[i];
+        smallDivsTab[key -1].dataset.lader = k[key];
+    }
+}
+
+
+// function f() {
+//
+//     if (smallDivsTab[firstPlayerPosition].dataset.snake) {
+//         informationAfterRollContainer.innerHTML = `You stepped on a field with a lader. Go up on field nr ${smallDivsTab[firstPlayerPosition].dataset.snake} and leave everyone behind.`
+//
+//     }
+}
+
+
+
+
 
 
 

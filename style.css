@@ -93,6 +93,12 @@ div.header {
     font-family: 'Gamja Flower', cursive;
 }
 
+p {
+    display: block;
+    box-sizing: border-box;
+    padding: 0 10px 20px 10px;
+}
+
 .game__dice_container {
     height: 20%;
     display:flex;
@@ -100,33 +106,34 @@ div.header {
     align-items: center;
 }
 
+#game__panel_pieces_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5%;
+}
 
 .firstPlayer {
 
-    background-color: deeppink;
+    background-color: blue;
     color: white;
     height: 20px;
     width: 20px;
     border-radius: 50%;
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
-    margin: 4px;
-    position: absolute;
-    bottom: 62px;
-    left: 8px;
-
+    z-index: 99;
+    display: block;
 }
 
 .secondPlayer {
 
-    background-color: blue;
+    background-color: deeppink;
     height: 20px;
     width: 20px;
     border-radius: 50%;
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
-    margin: 4px;
-    position: absolute;
-    bottom: 87px;
-    left: 8px;
+    z-index: 99;
+    display: block;
 }
 
 .dice {
@@ -149,8 +156,8 @@ div.header {
 
 .game__panel_information_after_roll_container {
     box-sizing: border-box;
-    height: 30%;
-    padding: 0 30px 30px 30px;
+    height: 28%;
+    padding: 0 30px 0 30px;
     font-size: 25px;
     text-align: center;
 }
