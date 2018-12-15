@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Snakes & Ladders </title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet">
+
+
+</head>
+<body>
+<div class="header">Hey, let's play in snakes and ladders together! </div><br>
+
+
+    <div id="welcome">
+        <div class="welcome_popup"></div>
+        <div class="welcome_popup__content">
+            <div class="welcome_information_container">
+                <h>Welcome in</h>
+                <h1>The Snakes and Laders game</h1><br>
+                <h2>How to play? </h2><br>
+                <p>
+                    <ol>
+                    <li>Take it in turns to roll the dice.</li>
+                    <li> Move your counter forward the number of spaces shown on the dice.</li>
+                    <li>If your counter lands at the bottom of a ladder, you can move up to the top of the ladder.</li>
+                    <li>If your counter lands on the head of a snake, you must slide down to the bottom of the snake.</li>
+                    <li>The first player to get to the space that says 'home' is the winner!</li>
+                    </ol>
+                </p><br>
+                <p>Remember, you have to roll<span> exactly </span>as much you need to step on 'home' field. Otherwise you will bounce from the end of the board.</p>
+            </div>
+            <div class="welcome_right_panel">
+                <div id="snake2_image"></div>
+                <button class="green_btn" id="play_the_game">Play the game</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="gameField">
+
+        <div class="game_panel">
+
+            <div class="game__panel_turn_indicator">
+                Now is<br>
+                <span id="whoseTurn"> FIRST PLAYER's </span><br>
+                turn.
+            </div>
+            <div class="game__panel_roll_btn_container">
+                <button class="roll"> Roll your dices</button>
+            </div>
+            <div class="game__panel_next_player">
+                <button class="next_player_btn"> Next player</button>
+            </div>
+            <div class="game__dice_container">
+                <div class="dice1 dice"></div>
+                <div class="dice2 dice"></div>
+            </div>
+            <div class="game__panel_information_after_roll_container">
+            </div>
+            <div id="game__panel_pieces_container">
+                <div class="firstPlayer"></div>
+                <div class="secondPlayer"></div>
+            </div>
+
+
+
+        </div>
+
+        <div class="game_board">
+            <div class="game_board__board_fields_container">
+                <div class="game_board__board_field"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <div id="won">
+
+            <div class="winner_popup"></div>
+            <div class="winner_popup__content">
+                <div class="information_container">
+                    <h>Congratulation !</h>
+                    <p></p>
+                </div>
+                <div class="winner_right_panel_container">
+                    <div id="snake_image"></div>
+                    <button class="green_btn" id="play_again">Play again</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+<script src="game.js"></script>
+</body>
+</html>
