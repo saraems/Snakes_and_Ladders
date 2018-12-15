@@ -18,7 +18,7 @@ div.header {
 }
 
 .gameField {
-    height:90%;
+    height:85%;
     width: 75%;
     background-color: lightgreen;
     display: flex;
@@ -30,15 +30,15 @@ div.header {
 .game_panel {
     width: 30%;
     border-right: 7px solid white;
-
 }
 
 .game_board {
     width: 70%;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    flex-direction: column;
 }
 
 
@@ -59,20 +59,20 @@ div.header {
 
 .next_player_btn {
     height: 60%;
-    width: 50%;
+    width: 70%;
     padding: 5px;
     color: white;
     background-color: deeppink;
     border: none;
     font-family: 'Gamja Flower', cursive;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 
 .game__panel_roll_btn_container {
     display: flex;
-    height: 10%;
+    height: 6%;
     justify-content: center;
     align-items: center;
 }
@@ -96,7 +96,7 @@ div.header {
 p {
     display: block;
     box-sizing: border-box;
-    padding: 0 10px 20px 10px;
+    margin: 0 0 7px 0;
 }
 
 .game__dice_container {
@@ -121,7 +121,7 @@ p {
     width: 20px;
     border-radius: 50%;
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
-    z-index: 99;
+    z-index: 9;
     display: block;
 }
 
@@ -132,7 +132,7 @@ p {
     width: 20px;
     border-radius: 50%;
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
-    z-index: 99;
+    z-index: 9;
     display: block;
 }
 
@@ -156,10 +156,16 @@ p {
 
 .game__panel_information_after_roll_container {
     box-sizing: border-box;
-    height: 28%;
+    height: 32%;
     padding: 0 30px 0 30px;
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
+}
+
+.game_board__board_fields_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -170,6 +176,198 @@ p {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    margin-left: 20px;
 }
 
+
+div#won {
+    display: none;
+}
+
+.winner_popup {
+    opacity:0.7;
+    filter: alpha(opacity=70);
+    background-color: white;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:90;
+}
+
+
+.winner_popup__content {
+    height: 90%;
+    width: 60%;
+    background-color: #e6ffe6;
+    color: red;
+    border: 5px solid lightgreen;
+    border-radius: 10px;
+    z-index:9999;
+    position: fixed;
+    top:5%;
+    left:20%;
+    display: flex;
+    font-size: 20px;
+    opacity: 1;
+    justify-content: space-around;
+}
+
+.winner_right_panel_container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+#snake_image {
+    height: 50%;
+    width: 50%;
+    background-image: url("images/snake.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 40px;
+}
+
+.information_container {
+    width: 60%;
+    color: yellowgreen;
+    text-align: center;
+    padding: 50px 10px 50px 50px;
+    box-sizing: border-box;
+}
+
+.information_container h{
+    font-size: 40px;
+    display: block;
+}
+
+.information_container p{
+    font-size: 50px;
+    display: block;
+    color:green;
+    margin-top: 100px;
+}
+
+
+
+
+
+.welcome_popup {
+    opacity:0.7;
+    filter: alpha(opacity=70);
+    background-color: white;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:90;
+}
+
+
+.welcome_popup__content {
+    height: 85%;
+    width: 80%;
+    background-color: #e6ffe6;
+    color: red;
+    border: 5px solid lightgreen;
+    border-radius: 10px;
+    z-index:9999;
+    position: fixed;
+    top:5%;
+    bottom: 5%;
+    left:10%;
+    display: flex;
+    font-size: 20px;
+    opacity: 1;
+    justify-content: space-around;
+}
+
+#snake2_image {
+    height: 50%;
+    width: 70%;
+    background-image: url("images/snake_2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    box-sizing: border-box;
+    margin:20px 20px 0 20px;
+
+}
+
+.welcome_information_container {
+    width: 60%;
+    color: yellowgreen;
+    text-align: center;
+    padding: 20px 10px 50px 50px;
+    box-sizing: border-box;
+}
+
+.welcome_information_container h{
+    font-size: 50px;
+    display: block;
+}
+
+.welcome_information_container h1{
+    font-size: 35px;
+    display: block;
+    font-weight: lighter;
+    color: green;
+}
+
+.welcome_information_container h2 {
+    font-size: 30px;
+    display: block;
+    font-weight: lighter;
+}
+
+.welcome_information_container ol {
+    text-align: left;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.welcome_information_container p span {
+    color: green;
+}
+
+.green_btn {
+    background-color: green;
+    color: white;
+    font-size: 30px;
+    padding: 5px;
+    font-family: 'Gamja Flower', cursive;
+    width: 80%;
+    border: none;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
+    margin-top: 40px;
+}
+
+.green_btn:hover {
+    background-color: greenyellow;
+    color:black;
+}
+
+
+.welcome_right_panel {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 40%;
+
+}
+
+button:active {
+    outline:none;
+}
+
+button {
+   outline:none;
+}
