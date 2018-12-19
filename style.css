@@ -5,22 +5,33 @@
 
 body {
     display: flex;
-    height: 100%;
+    height: 100vh;
     justify-content: center;
     align-content: center;
-    background-color: white;
-    font-family: 'Gamja Flower', cursive;
+    background-color: lightgreen;
+    font-family: 'Fira Sans', sans-serif;
+    background-image: url("4K-Snakes-Wallpaper-Full-HD1-1024x576.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: green;
 }
 
 div.header {
-    font-size: 30px;
-    margin:0.5%;
+    font-size: 1.5em;
+    padding: 10px;
+    box-sizing: border-box;
+    color: green;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .gameField {
-    height:85%;
-    width: 75%;
-    background-color: lightgreen;
+    min-height:85vh;
+    width: 65%;
+    /*background-color: lightgreen;*/
     display: flex;
     position: absolute;
     margin-top: 5%;
@@ -29,7 +40,10 @@ div.header {
 
 .game_panel {
     width: 30%;
-    border-right: 7px solid white;
+    margin-right: 20px;
+    background-color: rgba(188, 255, 188, 0.5);
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+    border-radius: 5px;
 }
 
 .game_board {
@@ -39,6 +53,14 @@ div.header {
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    background-color: rgba(188, 255, 188, 0.5);
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+    border-radius: 5px;
+
+}
+
+.game_board__board_field {
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
 }
 
 
@@ -46,8 +68,9 @@ div.header {
     box-sizing: border-box;
     height: 25%;
     padding: 30px 30px 10px 30px;
-    font-size: 27px;
+    font-size: 1.5em;
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .game__panel_next_player {
@@ -64,15 +87,15 @@ div.header {
     color: white;
     background-color: deeppink;
     border: none;
-    font-family: 'Gamja Flower', cursive;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 16px;
-    border-radius: 4px;
+    border-radius: 50px;
 }
 
 
 .game__panel_roll_btn_container {
     display: flex;
-    height: 6%;
+    height: 8%;
     justify-content: center;
     align-items: center;
 }
@@ -80,7 +103,7 @@ div.header {
 .roll {
     courser: pointer;
     background-color: blue;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 3px 0 rgba(0,0,0,0.19);
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
     border: none;
     height: 80%;
     width: 80%;
@@ -88,9 +111,9 @@ div.header {
     text-align: center;
     text-decoration: none;
     float: left;
-    font-size: 20px;
-    border-radius: 4px;
-    font-family: 'Gamja Flower', cursive;
+    font-size: 1.3em;
+    border-radius: 50px;
+    font-family: 'Fira Sans', sans-serif;
 }
 
 p {
@@ -114,24 +137,23 @@ p {
 }
 
 .firstPlayer {
-
     background-color: blue;
     color: white;
     height: 20px;
     width: 20px;
+    margin-right: 3px;
     border-radius: 50%;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
     z-index: 9;
     display: block;
 }
 
 .secondPlayer {
-
     background-color: deeppink;
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
     z-index: 9;
     display: block;
 }
@@ -141,11 +163,12 @@ p {
     width: 50px;
     background-color: white;
     padding: 10px;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 3px 0 rgba(0,0,0,0.19);
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
     margin: 5px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-radius: 15px;
 }
 
 
@@ -156,9 +179,9 @@ p {
 
 .game__panel_information_after_roll_container {
     box-sizing: border-box;
-    height: 32%;
+    height: 25%;
     padding: 0 30px 0 30px;
-    font-size: 20px;
+    font-size: 1em;
     text-align: center;
 }
 
@@ -183,38 +206,39 @@ div#won {
     display: none;
 }
 
+
 .winner_popup {
-    opacity:0.7;
-    filter: alpha(opacity=70);
-    background-color: white;
+    background-color: rgba(221, 255, 204, 0.7);
     position:fixed;
     width:100%;
     height:100%;
     top:0;
     left:0;
     z-index:90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .winner_popup__content {
-    height: 90%;
+    height: 80vh;
     width: 60%;
     background-color: #e6ffe6;
     color: red;
-    border: 5px solid lightgreen;
+    border: 1px solid lightgreen;
     border-radius: 10px;
     z-index:9999;
     position: fixed;
     top:5%;
     left:20%;
     display: flex;
-    font-size: 20px;
-    opacity: 1;
+    font-size: 26px;
     justify-content: space-around;
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
 }
 
 .winner_right_panel_container {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,7 +271,7 @@ div#won {
 }
 
 .information_container p{
-    font-size: 50px;
+    font-size: 0.7em;
     display: block;
     color:green;
     margin-top: 100px;
@@ -255,61 +279,70 @@ div#won {
 
 
 
-
+#welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .welcome_popup {
-    opacity:0.7;
-    filter: alpha(opacity=70);
-    background-color: white;
+    background-color: rgba(221, 255, 204, 0.7);
     position:fixed;
     width:100%;
     height:100%;
     top:0;
     left:0;
     z-index:90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
 .welcome_popup__content {
-    height: 85%;
-    width: 80%;
+    height: 95vh;
+    width: 65%;
     background-color: #e6ffe6;
-    color: red;
-    border: 5px solid lightgreen;
-    border-radius: 10px;
+    border: 1px solid lightgreen;
+    border-radius: 5px;
     z-index:9999;
     position: fixed;
-    top:5%;
-    bottom: 5%;
-    left:10%;
     display: flex;
     font-size: 20px;
-    opacity: 1;
     justify-content: space-around;
-}
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+   }
 
 #snake2_image {
     height: 50%;
-    width: 70%;
+    width: 60%;
     background-image: url("images/snake_2.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     box-sizing: border-box;
-    margin:20px 20px 0 20px;
+    margin: 50px 20px 0 20px;
 
 }
-
 .welcome_information_container {
     width: 60%;
     color: yellowgreen;
     text-align: center;
-    padding: 20px 10px 50px 50px;
+    padding: 65px 20px 56px 75px;
     box-sizing: border-box;
+}
+.welcome_right_panel {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .welcome_information_container h{
-    font-size: 50px;
+    font-size: 40px;
     display: block;
 }
 
@@ -321,15 +354,22 @@ div#won {
 }
 
 .welcome_information_container h2 {
-    font-size: 30px;
+    font-size: 20px;
     display: block;
     font-weight: lighter;
+    text-align: left;
 }
 
 .welcome_information_container ol {
     text-align: left;
     padding: 5px;
     box-sizing: border-box;
+    font-size: 0.8em;
+}
+
+.welcome_information_container p  {
+    font-size: 0.7em;
+    text-align: left;
 }
 
 .welcome_information_container p span {
@@ -339,29 +379,19 @@ div#won {
 .green_btn {
     background-color: green;
     color: white;
-    font-size: 30px;
-    padding: 5px;
-    font-family: 'Gamja Flower', cursive;
+    font-size: 0.9em;
+    padding: 15px;
+    font-family: 'Fira Sans', sans-serif;
     width: 80%;
     border: none;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.19);
-    margin-top: 40px;
+    box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+    margin-top: 15px;
+    border-radius: 50px;
 }
 
 .green_btn:hover {
     background-color: greenyellow;
     color:black;
-}
-
-
-.welcome_right_panel {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 40%;
-
 }
 
 button:active {

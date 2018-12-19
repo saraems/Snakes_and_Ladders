@@ -58,8 +58,8 @@ for(let i = 0; i < 10; i++) {
 
     let bigDiv = document.createElement("div");
 
-    bigDiv.style.height = 48 + "px";
-    bigDiv.style.width = 480 + "px";
+    bigDiv.style.height = 10 + "%";
+    bigDiv.style.maxWidth = 480 + "px";
 
     bigDiv.style.display = "flex";
     bigDiv.id = 10 - i;
@@ -94,8 +94,8 @@ for (let i = 0; i < bigDivTabb.length; i++) {
 
         let smallDiv = document.createElement("div");
 
-        smallDiv.style.height = 48 + "px";
-        smallDiv.style.width = 48 + "px";
+        smallDiv.style.height = 100 + "%";
+        smallDiv.style.width = 10 + "%";
 
         smallDiv.style.display = "flex";
         smallDiv.style.justifyContent = "center";
@@ -279,14 +279,14 @@ btnRoll.addEventListener("click", function() {
 
            if (rollsecondDice === rollfirstDice) {
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br></p> Wow, you rolled two times ${rollfirstDice}, stepped on the ladder field and moved on field nr ${firstPlayerPosition}, now roll your dices once more.`;
+               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br><br></p> Wow, you rolled two times ${rollfirstDice}, stepped on the ladder field and moved on field nr ${firstPlayerPosition}, now roll your dices once more.`;
 
                whoseTurn = 1;
                playerRolledIsBlocked = false;
 
            } else {
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br> On your way you stepped on a field with the ladder and you moved up on field nr ${firstPlayerPosition}</span>.`;
+               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br><br> On your way you stepped on a field with the ladder and you moved up on field nr ${firstPlayerPosition}</span>.`;
 
                whoseTurn = 2;
                playerRolledIsBlocked = true;
