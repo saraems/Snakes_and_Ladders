@@ -1,0 +1,38 @@
+
+$gap: 10px;
+
+.container {
+
+  padding-left: $gap;
+  padding-right: $gap;
+
+  .row {
+
+    margin-left: -$gap;
+    margin-right: -$gap;
+
+    [class*="col-"] {
+      padding-left: $gap;
+      padding-right: $gap;
+      padding-bottom: $gap;
+    }
+  }
+
+
+  @media (min-width: 760px) {
+
+    .row {
+
+      display: flex;
+
+      @for $i from 1 through 2 {
+
+        .col-#{$i}-2 {
+
+          width: (100/2 * $i) *1%;
+        }
+      }
+    }
+  }
+}
+

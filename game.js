@@ -36,12 +36,19 @@ let smallDivsIdsCounter = 0;
 let smallDivsTab = [];
 let bigDivTabb = [];
 
+let checkTheRules = document.querySelector(".check_rules");
+let rules =document.querySelector(".rules");
+let closeCross = document.querySelector(".close_cross");
+
 let playGameBtn = document.querySelector("button#play_the_game");
 let welcomeDialog = document.querySelector("div#welcome");
 
 let won = document.querySelector("div#won");
 let informationForWinner = document.querySelector("div.information_container p");
 let playAgain = document.querySelector("button#play_again");
+
+let submit = document.querySelector(".submit");
+let input = document.querySelector(".players_info");
 
 
 // Function which gets a random integer number, between 1 and 6 (as after dice roll)
@@ -137,7 +144,6 @@ for(let i = 0; i < smallDivsTab.length ; i++) {
 }
 
 
-
 // Function which changes roll picture according to randomized numbers on dices
 
 function changeDicePrint(rollfirstDice, rollsecondDice) {
@@ -186,7 +192,6 @@ function movePlayersPiece(piece, playersPosition,previousPosition) {
     }
 }
 
-
 // Next Player, switch players and unblock roll button for next player
 
 nextPlayerBtn.addEventListener("click", function (e) {
@@ -230,216 +235,303 @@ nextPlayerBtn.addEventListener("click", function (e) {
 });
 
 
-// Main algorithm of the game, called on "Roll dices" button click
+// Main algorithm of the game, called on click in "Roll dices" button
+
+
 
 btnRoll.addEventListener("click", function() {
 
+    let randomRollTimer = Math.floor(Math.random() * (1000 - 500 + 1)) + 500;
+    // Randomized number of seconds when roll animation last
 
-    // First and then second player's turn
+
 
    if (whoseTurn === 1 && playerRolledIsBlocked === false) {
 
 
-       rollfirstDice = diceRoll();
-       rollsecondDice = diceRoll();
+       let rollAnimation =  setInterval ( function() {
+
+           rollfirstDice = diceRoll();
+           rollsecondDice = diceRoll();
+
+           changeDicePrint(rollfirstDice, rollsecondDice);
 
 
-       console.log(rollfirstDice + "first");
-       console.log(rollsecondDice + "first");
+       }, 100);
 
-       moveForward = moveForward + rollfirstDice + rollsecondDice;
+       setTimeout(() => { clearInterval(rollAnimation);
 
-       previousPositionFirstPlayer = firstPlayerPosition;
-       firstPlayerPosition += (rollfirstDice + rollsecondDice);
+           console.log(rollfirstDice + "first");
+           console.log(rollsecondDice + "first");
+
+           previousPositionFirstPlayer = firstPlayerPosition;
+
+           moveForward = moveForward + rollfirstDice + rollsecondDice;
+           firstPlayerPosition += (rollfirstDice + rollsecondDice);
+
+
+       }, randomRollTimer);
+
+
 
        //Condition which checks if player reached field nr 100, if player's score is bigger than 100,
        // piece bounces from the end of the board and moves back as many fields as sum of rolls equals,
        // when score is equal 100, player wins, and dialog window with congrats opens
 
-       if (firstPlayerPosition > 100) {
-           firstPlayerPosition = 100 - (firstPlayerPosition - 100)
-       } else if (firstPlayerPosition === 100) {
 
-           won.style.display = "block";
-           informationForWinner.innerHTML = `<span style="color: blue;">FIRST PLAYER</span><br> wins. You finally reached home ,<br> good job.`
-       }
+       setTimeout(() => {
 
-       changeDicePrint(rollfirstDice, rollsecondDice);
 
-       movePlayersPiece(firstPlayersPiece, firstPlayerPosition, previousPositionFirstPlayer);
+           if (firstPlayerPosition > 100) {
+               firstPlayerPosition = 100 - (firstPlayerPosition - 100);
+               informationAfterRollContainer.innerHTML = `You bounced from the end of the boar, and now you are on field nr ${firstPlayerPosition}`;
+
+           } else if (firstPlayerPosition === 100) {
+
+               won.style.display = "block";
+               informationForWinner.innerHTML = `<span style="color: blue;">FIRST PLAYER</span><br> wins. You finally reached home ,<br> good job.`
+           }}, 1000);
+
+
+
 
        // Condition checking if player stepped onto field with ladder, snake or plain one, and then
        // secondly check if player rolled the same numbers, if so player should repeat dice roll
 
-       if (smallDivsTab[firstPlayerPosition].dataset.lader) {
 
-           firstPlayerPosition = parseInt(smallDivsTab[firstPlayerPosition].dataset.lader);
 
-           movePlayersPiece(firstPlayersPiece, firstPlayerPosition, previousPositionFirstPlayer);
 
-           if (rollsecondDice === rollfirstDice) {
+       setTimeout(() => {
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br><br></p> Wow, you rolled two times ${rollfirstDice}, stepped on the ladder field and moved on field nr ${firstPlayerPosition}, now roll your dices once more.`;
 
-               whoseTurn = 1;
-               playerRolledIsBlocked = false;
+           if (smallDivsTab[firstPlayerPosition].dataset.lader) {
 
-           } else {
+               firstPlayerPosition = parseInt(smallDivsTab[firstPlayerPosition].dataset.lader);
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br><br> On your way you stepped on a field with the ladder and you moved up on field nr ${firstPlayerPosition}</span>.`;
 
-               whoseTurn = 2;
-               playerRolledIsBlocked = true;
+               if (rollsecondDice === rollfirstDice) {
 
-           }
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br></p> Wow, you rolled two times ${rollfirstDice}, stepped on the ladder field and moved on field nr ${firstPlayerPosition}, now roll your dices once more.`;
 
-       } else  if (smallDivsTab[firstPlayerPosition].dataset.snake) {
+                   whoseTurn = 1;
+                   playerRolledIsBlocked = false;
 
-           informationAfterRollContainer.innerHTML = `You stepped on a field nr with a snake. Go down on a field nr ${smallDivsTab[firstPlayerPosition].dataset.snake}.`;
-           firstPlayerPosition = parseInt(smallDivsTab[firstPlayerPosition].dataset.snake);
+               } else {
 
-           movePlayersPiece(firstPlayersPiece, firstPlayerPosition, previousPositionFirstPlayer);
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br><br> On your way you stepped on a field with the ladder and you moved up on field nr ${firstPlayerPosition}</span>.`;
 
-           if (rollsecondDice === rollfirstDice) {
+                   whoseTurn = 2;
+                   playerRolledIsBlocked = true;
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p> Luck in unluck, you rolled two times ${rollfirstDice}. But on your way you stepped a field with the snake. You are on field nr ${firstPlayerPosition}. Roll once more. `;
+               }
 
-               whoseTurn = 1;
-               playerRolledIsBlocked = false;
+           } else  if (smallDivsTab[firstPlayerPosition].dataset.snake) {
 
-           } else {
+               informationAfterRollContainer.innerHTML = `You stepped on a field nr with a snake. Go down on a field nr ${smallDivsTab[firstPlayerPosition].dataset.snake}.`;
+               firstPlayerPosition = parseInt(smallDivsTab[firstPlayerPosition].dataset.snake);
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br> Unfortunately, on your way from field nr ${previousPositionFirstPlayer} you stepped on a field with the snake and you moved down on field nr ${firstPlayerPosition}</span>. `;;
 
-               whoseTurn = 2;
-               playerRolledIsBlocked = true;
+               if (rollsecondDice === rollfirstDice) {
 
-           }
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p> Luck in unluck, you rolled two times ${rollfirstDice}. But on your way you stepped a field with the snake. You are on field nr ${firstPlayerPosition}. Roll once more. `;
 
-       } else {
+                   whoseTurn = 1;
+                   playerRolledIsBlocked = false;
 
-           if (rollfirstDice === rollsecondDice) {
+               } else {
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p>You got two times <span class="move_forward">${rollfirstDice}</span>.<br><br>Roll your dice once more and leave the other player behind.`;
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br> Unfortunately, on your way from field nr ${previousPositionFirstPlayer} you stepped on a field with the snake and you moved down on field nr ${firstPlayerPosition}</span>. `;;
 
-               whoseTurn = 1;
-               playerRolledIsBlocked = false;
+                   whoseTurn = 2;
+                   playerRolledIsBlocked = true;
+
+               }
 
            } else {
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br></p>You moved <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${firstPlayerPosition}</span>. <br><br>Your previous position<br> field nr ${previousPositionFirstPlayer}.`;
+               if (rollfirstDice === rollsecondDice) {
 
-               whoseTurn = 2;
-               playerRolledIsBlocked = true;
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p>You got two times <span class="move_forward">${rollfirstDice}</span>.<br><br>Roll your dice once more and leave the other player behind.`;
+
+                   whoseTurn = 1;
+                   playerRolledIsBlocked = false;
+
+               } else {
+
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br></p>You moved <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${firstPlayerPosition}</span>. <br><br>Your previous position<br> field nr ${previousPositionFirstPlayer}.`;
+
+                   whoseTurn = 2;
+                   playerRolledIsBlocked = true;
+               }
+
            }
 
-       }
+       }, 1500);
+
+
+       setTimeout(() => {movePlayersPiece(firstPlayersPiece, firstPlayerPosition, previousPositionFirstPlayer)}, 2800);
 
 
    } else if (whoseTurn === 2 && playerRolledIsBlocked === false) {
 
 
-       rollfirstDice = diceRoll();
-       rollsecondDice = diceRoll();
 
-       console.log(rollfirstDice + "second");
-       console.log(rollsecondDice + "second");
+       let rollAnimation =  setInterval ( function() {
 
-       moveForward += (rollfirstDice + rollsecondDice);
+           rollfirstDice = diceRoll();
+           rollsecondDice = diceRoll();
 
-       previousPositionSecondPlayer = secondPlayerPosition;
-       secondPlayerPosition += (rollfirstDice + rollsecondDice);
+           changeDicePrint(rollfirstDice, rollsecondDice);
 
-       if (secondPlayerPosition > 100) {
-           secondPlayerPosition = 100 - (secondPlayerPosition - 100)
-       } else if (secondPlayerPosition === 100) {
 
-           won.style.display = "block";
-           informationForWinner.innerHTML = `<span style="color:deeppink;">SECOND PLAYER</span><br> wins. You finally reached home,<br> good job! `
-       }
+       }, 100);
 
-       changeDicePrint(rollfirstDice, rollsecondDice);
 
-       movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
+       setTimeout(() => {
 
-       if (smallDivsTab[secondPlayerPosition].dataset.lader) {
+           clearInterval(rollAnimation);
 
-           secondPlayerPosition = parseInt(smallDivsTab[secondPlayerPosition].dataset.lader);
+           console.log(rollfirstDice + "first");
+           console.log(rollsecondDice + "first");
 
-           movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
+           previousPositionSecondPlayer = secondPlayerPosition;
 
-           if (rollsecondDice === rollfirstDice) {
+           moveForward = moveForward + rollfirstDice + rollsecondDice;
+           secondPlayerPosition += (rollfirstDice + rollsecondDice);
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p> Wow, you rolled two times  ${rollfirstDice}, stepped on the ladder field and moved on field nr ${secondPlayerPosition}, now roll your dices once more.`;
 
-               whoseTurn = 2;
-               playerRolledIsBlocked = false;
+       }, randomRollTimer);
+
+
+
+
+       setTimeout(() => {
+
+
+           if (secondPlayerPosition > 100) {
+
+               secondPlayerPosition = 100 - (secondPlayerPosition - 100);
+               informationAfterRollContainer.innerHTML = `You bounced from the end of the boar, and now you are on field nr ${firstPlayerPosition}`;
+
+           } else if (secondPlayerPosition === 100) {
+
+               won.style.display = "block";
+               informationForWinner.innerHTML = `<span style="color:deeppink;">SECOND PLAYER</span><br> wins. You finally reached home,<br> good job! `
+
+           }}, 1000);
+
+
+
+       setTimeout(() => {
+
+
+           if (smallDivsTab[secondPlayerPosition].dataset.lader) {
+
+               secondPlayerPosition = parseInt(smallDivsTab[secondPlayerPosition].dataset.lader);
+
+               movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
+
+               if (rollsecondDice === rollfirstDice) {
+
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p> Wow, you rolled two times  ${rollfirstDice}, stepped on the ladder field and moved on field nr ${secondPlayerPosition}, now roll your dices once more.`;
+
+                   whoseTurn = 2;
+                   playerRolledIsBlocked = false;
+
+               } else {
+
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br> On your way you stepped on a field with the ladder and you moved up on field nr ${secondPlayerPosition}</span>.`;
+                   whoseTurn = 1;
+                   playerRolledIsBlocked = true;
+
+               }
+
+           } else if (smallDivsTab[secondPlayerPosition].dataset.snake) {
+
+               informationAfterRollContainer.innerHTML = `You stepped on a field with snake. Go down on a field nr ${smallDivsTab[secondPlayerPosition].dataset.snake}.`;
+               secondPlayerPosition = parseInt(smallDivsTab[secondPlayerPosition].dataset.snake);
+
+               movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
+
+               if (rollsecondDice === rollfirstDice) {
+
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p> Luck in unluck, you rolled two times ${rollfirstDice}. But on your way you stepped a field with the snake. You are on field nr ${secondPlayerPosition}. Roll once more. `;
+
+                   whoseTurn = 2;
+                   playerRolledIsBlocked = false;
+
+               } else {
+
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br> Unfortunately, on your way from field nr ${previousPositionSecondPlayer} you stepped on a field with the snake and you moved down on field nr ${secondPlayerPosition}</span>. `;
+
+                   whoseTurn = 1;
+                   playerRolledIsBlocked = true;
+
+               }
 
            } else {
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br> On your way you stepped on a field with the ladder and you moved up on field nr ${secondPlayerPosition}</span>.`;
-               whoseTurn = 1;
-               playerRolledIsBlocked = true;
 
+               if (rollfirstDice === rollsecondDice) {
+
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p>You got two times <span class="move_forward">${rollfirstDice}</span>.<br><br>Roll your dice once more and leave the other player behind.`;
+
+                   whoseTurn = 2;
+                   playerRolledIsBlocked = false;
+
+
+               } else {
+
+                   informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br></p>You moved <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${secondPlayerPosition}</span>. <br><br>Your previous position<br> field nr ${previousPositionSecondPlayer}.`;
+
+                   whoseTurn = 1;
+                   playerRolledIsBlocked = true;
+               }
            }
 
-       } else if (smallDivsTab[secondPlayerPosition].dataset.snake) {
-
-           informationAfterRollContainer.innerHTML = `You stepped on a field with snake. Go down on a field nr ${smallDivsTab[secondPlayerPosition].dataset.snake}.`;
-           secondPlayerPosition = parseInt(smallDivsTab[secondPlayerPosition].dataset.snake);
-
-           movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
-
-           if (rollsecondDice === rollfirstDice) {
-
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p> Luck in unluck, you rolled two times ${rollfirstDice}. But on your way you stepped a field with the snake. You are on field nr ${secondPlayerPosition}. Roll once more. `;
-
-               whoseTurn = 2;
-               playerRolledIsBlocked = false;
-
-           } else {
-
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br> Unfortunately, on your way from field nr ${previousPositionSecondPlayer} you stepped on a field with the snake and you moved down on field nr ${secondPlayerPosition}</span>. `;
-
-               whoseTurn = 1;
-               playerRolledIsBlocked = true;
-
-           }
-
-       } else {
+       }, 1000);
 
 
-           if (rollfirstDice === rollsecondDice) {
+       setTimeout(() => {movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer)}, 2800);
 
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p>You got two times <span class="move_forward">${rollfirstDice}</span>.<br><br>Roll your dice once more and leave the other player behind.`;
-
-               whoseTurn = 2;
-               playerRolledIsBlocked = false;
-
-
-           } else {
-
-               informationAfterRollContainer.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br></p>You moved <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${secondPlayerPosition}</span>. <br><br>Your previous position<br> field nr ${previousPositionSecondPlayer}.`;
-
-               whoseTurn = 1;
-               playerRolledIsBlocked = true;
-           }
-       }
    }
 }
    );
+
+
+
 
 // Actions after pop-ups (dialogue windows) buttons click
 
 playGameBtn.addEventListener("click", function () {
 
     welcomeDialog.style.display = "none";
+    input.style.visibility = "visible";
 
 });
 
 playAgain.addEventListener("click", function () {
 
     window.location.reload()
+
+});
+
+checkTheRules.addEventListener("click", function () {
+
+    rules.style.top = 0;
+
+});
+
+closeCross.addEventListener("click", function () {
+
+    rules.style.top = `-70vh`;
+
+});
+
+submit.addEventListener("click", function (e) {
+
+    e.preventDefault();
+    input.style.display = "none";
 
 });
 
