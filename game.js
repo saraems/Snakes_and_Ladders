@@ -5,6 +5,16 @@ let secondPlayerPosition = 0;
 let previousPositionFirstPlayer = 0;
 let previousPositionSecondPlayer = 0;
 
+let firstPlayersNameInput = document.querySelector("#first_players_name");
+let secondPlayersNameInput = document.querySelector("#second_players_name");
+
+let firstPlayersName;
+let secondPlayersName;
+
+
+let firstPlayersColor = document.querySelector("#first_players_color");
+let secondPlayersColor = document.querySelector("#second_players_color");
+
 
 let snakes  = [{16: 6}, {46: 25}, {49: 11}, {62: 19}, {64: 60}, {74: 53}, {89: 68}, {92: 88}, {95: 75}, {99: 80}];
 let ladders = [{2: 38}, {7: 14}, {8: 31}, {15:26}, {21: 42}, {28: 84}, {36: 44}, {51: 67}, {71: 91}, {78: 98}, {87: 94}];
@@ -200,32 +210,32 @@ nextPlayerBtn.addEventListener("click", function (e) {
 
         if (whoseTurn === 1 && playerRolledIsBlocked === true) {
 
-            btnRoll.style.backgroundColor = "blue";
-            whoseTurnSpan.style.color = "blue";
-            whoseTurnSpan.innerText = "FIRST PLAYER's";
-            nextPlayerBtn.style.backgroundColor = "blue";
+            btnRoll.style.backgroundColor = `${firstPlayersColor}`;
+            whoseTurnSpan.style.color = `${firstPlayersColor}`;
+            whoseTurnSpan.innerText = `${firstPlayersName}'s`;
+            nextPlayerBtn.style.backgroundColor = `${firstPlayersColor}`;
 
             informationAfterRollContainer.innerHTML = ``;
             dice1.style.backgroundImage = "none";
             dice2.style.backgroundImage = "none";
 
 
-            nextPlayerBtn.style.backgroundColor = "deeppink";
+            nextPlayerBtn.style.backgroundColor = `${secondPlayersColor}`;
 
             playerRolledIsBlocked = false;
             moveForward = 0;
 
         } else if (whoseTurn === 2 && playerRolledIsBlocked === true) {
 
-            btnRoll.style.backgroundColor = "deeppink";
-            whoseTurnSpan.style.color = "deeppink";
-            whoseTurnSpan.innerText = "SECOND PLAYER's";
+            btnRoll.style.backgroundColor = `${secondPlayersColor}`;
+            whoseTurnSpan.style.color = `${secondPlayersColor}`;
+            whoseTurnSpan.innerText = `${secondPlayersName}'s`;
 
             informationAfterRollContainer.innerHTML = ``;
             dice1.style.backgroundImage = "none";
             dice2.style.backgroundImage = "none";
 
-            nextPlayerBtn.style.backgroundColor = "blue";
+            nextPlayerBtn.style.backgroundColor = `${firstPlayersColor}`;
 
             playerRolledIsBlocked = false;
             moveForward = 0;
@@ -289,7 +299,9 @@ btnRoll.addEventListener("click", function() {
            } else if (firstPlayerPosition === 100) {
 
                won.style.display = "block";
-               informationForWinner.innerHTML = `<span style="color: blue;">FIRST PLAYER</span><br> wins. You finally reached home ,<br> good job.`
+               informationForWinner.innerHTML = `<span style="color: ${firstPlayersColor};">${firstPlayersName}</span><br> wins. You finally reached home ,<br> good job.`
+               firstPlayerPosition = 100;
+
            }}, 1000);
 
 
@@ -416,7 +428,9 @@ btnRoll.addEventListener("click", function() {
            } else if (secondPlayerPosition === 100) {
 
                won.style.display = "block";
-               informationForWinner.innerHTML = `<span style="color:deeppink;">SECOND PLAYER</span><br> wins. You finally reached home,<br> good job! `
+               won.style.display = "block";
+               informationForWinner.innerHTML = `<span style="color: ${firstPlayersColor};">${firstPlayersName}</span><br> wins. You finally reached home ,<br> good job.`
+               firstPlayerPosition = 100;
 
            }}, 1000);
 
@@ -528,10 +542,50 @@ closeCross.addEventListener("click", function () {
 
 });
 
+let error = document.querySelector(".error");
+
+
 submit.addEventListener("click", function (e) {
 
     e.preventDefault();
-    input.style.display = "none";
+    var isValid = false;
+
+    // firstPlayersName = firstPlayersName.value;
+
+
+    if (!secondPlayersNameInput.value || !firstPlayersNameInput.value) {
+
+        error.innerHTML = `Please, insert proper Player's name`;
+
+    } else if (secondPlayersNameInput.value && firstPlayersNameInput.value) {
+
+        secondPlayersName = secondPlayersNameInput.value;
+        firstPlayersName = firstPlayersNameInput.value;
+
+        isValid = true;
+    }
+
+
+
+    if (isValid) {
+
+        input.style.display = "none";
+
+        firstPlayersColor = firstPlayersColor.value;
+        secondPlayersColor = secondPlayersColor.value;
+
+        whoseTurnSpan.style.color = `${firstPlayersColor}`;
+        whoseTurnSpan.innerText = `${firstPlayersName}'s`;
+
+        nextPlayerBtn.style.backgroundColor = `${secondPlayersColor}`;
+        btnRoll.style.backgroundColor = `${firstPlayersColor}`;
+
+        firstPlayersPiece.style.backgroundColor = `${firstPlayersColor}`;
+        secondPlayersPiece.style.backgroundColor = `${secondPlayersColor}`;
+
+        console.log(firstPlayersName, secondPlayersName,  firstPlayersColor, secondPlayersColor);
+
+    }
 
 });
 

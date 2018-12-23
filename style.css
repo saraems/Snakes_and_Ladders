@@ -511,8 +511,16 @@ button {
 input {
     height: 20px;
     width: 100px;
+    font-size: 16px;
 }
 
 input:focus {
     outline: 1px solid yellowgreen;
+}
+
+.error {
+    color: red;
+    height: 16px;
+    font-size: 10px;
+    font-family: 'Fira Sans', sans-serif;
 }

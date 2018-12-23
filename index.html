@@ -5,7 +5,6 @@
     <title> Snakes & Ladders </title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit="no">
-    <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 
 
@@ -140,29 +139,36 @@
         <div class="input container">
             <h>Before we start choose your color</h><br>
 
-            <div class="row">
+            <form class="row">
                 <div class="col-1-2">
                     <p>First player</p>
                     <label> Name:
-                        <input type="text">
+                        <input type="text" id="first_players_name" required minlength="3">
                     </label>
                     <label> Piece's color:
-                        <input type="color">
+                        <input type="color" id="first_players_color">
                     </label>
                 </div><br><br>
                 <div class="col-1-2">
                     <p>Second player</p>
                     <label> Name:
-                        <input type="text">
+                        <input type="text" id="second_players_name" required minlength="3">
                     </label>
                     <label> Piece's color:
-                        <input type="color">
+                        <input type="color" id="second_players_color">
                     </label>
-                </div><br><br>
-            </div>
-            <button type="submit" class="green_btn submit">Let's play</button>
+                </div><br>
+                <div class="error"></div>
+                <div style="font-size: 12px;">* Please do not pick very bright colors.</div>
+                <br><br>
+
+                <button type="submit" class="green_btn submit">Let's play</button>
+
         </div>
-</div>
+            </form>
+
+        </div>
+
 
 
     <script src="game.js"></script>
