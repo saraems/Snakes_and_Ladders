@@ -1,0 +1,37 @@
+
+
+.rules {
+  height: 65vh;
+  width: 60%;
+  background-color: #e6ffe6;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+  z-index:9999;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  justify-content: space-between;
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  padding: 50px;
+  box-sizing: border-box;
+  top: -70vh;
+  transition-duration: 1s
+
+}
+
+.rules h1 {
+  margin-bottom: 20px;
+}
+
+.close_cross {
+  position: absolute;
+  font-size: 70px;
+  right: 30px;
+  top: -10px;
+  cursor: pointer;
+}
+
+.close_cross:hover {
+  color: greenyellow;
+}

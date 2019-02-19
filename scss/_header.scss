@@ -1,0 +1,41 @@
+div.header {
+  font-size: 1.5em;
+  padding: 10px;
+  box-sizing: border-box;
+  color: green;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check_rules {
+  width: 150px;
+  height: 25px;
+  background-color: rgba(188, 255, 188, 0.8);
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  border-radius: 5px;
+  font-size: 1rem;
+  z-index: 9;
+  left: -10px;
+  top: 2%;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-left: 20px;
+  color: green;
+  cursor: pointer;
+}
+
+.check_rules:hover {
+  transform: scale(1.1);
+}
+
+
+.check_rules p {
+  display: block;
+  margin: 0;
+}

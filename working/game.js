@@ -1,69 +1,69 @@
 
-var firstPlayerPosition = 0;
-var secondPlayerPosition = 0;
+let firstPlayerPosition = 0;
+let secondPlayerPosition = 0;
 
-var previousPositionFirstPlayer = 0;
-var previousPositionSecondPlayer = 0;
+let previousPositionFirstPlayer = 0;
+let previousPositionSecondPlayer = 0;
 
-var firstPlayersNameInput = document.querySelector("#first_players_name");
-var secondPlayersNameInput = document.querySelector("#second_players_name");
+let firstPlayersNameInput = document.querySelector("#first_players_name");
+let secondPlayersNameInput = document.querySelector("#second_players_name");
 
-var firstPlayersName;
-var secondPlayersName;
-
-
-var firstPlayersColor = document.querySelector("#first_players_color");
-var secondPlayersColor = document.querySelector("#second_players_color");
+let firstPlayersName;
+let secondPlayersName;
 
 
-var snakes  = [{16: 6}, {46: 25}, {49: 11}, {62: 19}, {64: 60}, {74: 53}, {89: 68}, {92: 88}, {95: 75}, {99: 80}];
-var ladders = [{2: 38}, {7: 14}, {8: 31}, {15:26}, {21: 42}, {28: 84}, {36: 44}, {51: 67}, {71: 91}, {78: 98}, {87: 94}];
+let firstPlayersColor = document.querySelector("#first_players_color");
+let secondPlayersColor = document.querySelector("#second_players_color");
 
-var rollfirstDice;
-var rollsecondDice;
 
-var playerRolledIsBlocked = false;
+let snakes  = [{16: 6}, {46: 25}, {49: 11}, {62: 19}, {64: 60}, {74: 53}, {89: 68}, {92: 88}, {95: 75}, {99: 80}];
+let ladders = [{2: 38}, {7: 14}, {8: 31}, {15:26}, {21: 42}, {28: 84}, {36: 44}, {51: 67}, {71: 91}, {78: 98}, {87: 94}];
 
-var dice1 = document.querySelector(".dice1");
-var dice2 = document.querySelector(".dice2");
+let rollfirstDice;
+let rollsecondDice;
 
-var whoseTurnSpan = document.querySelector("#whoseTurn");
-var whoseTurn = 1;
+let playerRolledIsBlocked = false;
 
-var moveForward = 0;
+const dice1 = document.querySelector(".dice1");
+const dice2 = document.querySelector(".dice2");
 
-var btnRoll= document.querySelector("button.roll");
-var nextPlayerBtn = document.querySelector("button.next_player_btn");
+let whoseTurnSpan = document.querySelector("#whoseTurn");
+let whoseTurn = 1;
 
-var informationAfterRollContainer = document.querySelector(".game__panel_information_after_roll_container");
+let moveForward = 0;
 
-var firstPlayersPiece = document.querySelector('.firstPlayer');
-var secondPlayersPiece = document.querySelector('.secondPlayer');
+let btnRoll= document.querySelector("button.roll");
+let nextPlayerBtn = document.querySelector("button.next_player_btn");
 
-var gameBoard = document.querySelector("div.game_board__board_field");
+let informationAfterRollContainer = document.querySelector(".game__panel_information_after_roll_container");
 
-var smallDivsIdsCounter = 0;
-var smallDivsTab = [];
-var bigDivTabb = [];
+const firstPlayersPiece = document.querySelector('.firstPlayer');
+const secondPlayersPiece = document.querySelector('.secondPlayer');
 
-var checkTheRules = document.querySelector(".check_rules");
-var rules =document.querySelector(".rules");
-var closeCross = document.querySelector(".close_cross");
+let gameBoard = document.querySelector("div.game_board__board_field");
 
-var playGameBtn = document.querySelector("button#play_the_game");
-var welcomeDialog = document.querySelector("div#welcome");
+let smallDivsIdsCounter = 0;
+let smallDivsTab = [];
+let bigDivTabb = [];
 
-var won = document.querySelector("div#won");
-var informationForWinner = document.querySelector("div.information_container p");
-var playAgain = document.querySelector("button#play_again");
+let checkTheRules = document.querySelector(".check_rules");
+let rules =document.querySelector(".rules");
+let closeCross = document.querySelector(".close_cross");
 
-var submit = document.querySelector(".submit");
-var input = document.querySelector(".players_info");
+let playGameBtn = document.querySelector("button#play_the_game");
+let welcomeDialog = document.querySelector("div#welcome");
+
+let won = document.querySelector("div#won");
+let informationForWinner = document.querySelector("div.information_container p");
+let playAgain = document.querySelector("button#play_again");
+
+let submit = document.querySelector(".submit");
+let input = document.querySelector(".players_info");
 
 
 // Function which gets a random integer number, between 1 and 6 (as after dice roll)
 
-var diceRoll = function () {
+const diceRoll = function () {
     return Math.floor(Math.random() * (6 - 1) + 1);
 };
 
@@ -71,9 +71,9 @@ var diceRoll = function () {
 // Algorithm creating matrix of board fields 10 x 10 for the game
 // 10 - rows, with a proper flex-box, properties indicating a field number increase way for children fields
 
-for(var i = 0; i < 10; i++) {
+for(let i = 0; i < 10; i++) {
 
-    var bigDiv = document.createElement("div");
+    let bigDiv = document.createElement("div");
 
     bigDiv.style.height = 10 + "%";
     bigDiv.style.maxWidth = 480 + "px";
@@ -104,12 +104,12 @@ bigDivTabb.reverse();
 // Creating columns (single cells) in each of created row
 
 
-for (var i = 0; i < bigDivTabb.length; i++) {
+for (let i = 0; i < bigDivTabb.length; i++) {
 
 
-    for(var j = 0; j < 10; j++) {
+    for(let j = 0; j < 10; j++) {
 
-        var smallDiv = document.createElement("div");
+        let smallDiv = document.createElement("div");
 
         smallDiv.style.height = 100 + "%";
         smallDiv.style.width = 10 + "%";
@@ -130,11 +130,11 @@ for (var i = 0; i < bigDivTabb.length; i++) {
 // div's (cell) dataset contains field's number on which player piece should move, after stepping snake's field
 
 
-for(var i = 0; i < smallDivsTab.length ; i++) {
+for(let i = 0; i < smallDivsTab.length ; i++) {
 
-    for (var key in snakes[i]) {
+    for (let key in snakes[i]) {
 
-        var k = snakes[i];
+        let k = snakes[i];
         smallDivsTab[key].dataset.snake = k[key];
     }
 }
@@ -144,11 +144,11 @@ for(var i = 0; i < smallDivsTab.length ; i++) {
 // div's (cell) dataset contains field's number on which player piece should move, after stepping ladder's field
 
 
-for(var i = 0; i < smallDivsTab.length ; i++) {
+for(let i = 0; i < smallDivsTab.length ; i++) {
 
-    for (var key in ladders[i]) {
+    for (let key in ladders[i]) {
 
-        var k = ladders[i];
+        let k = ladders[i];
         smallDivsTab[key].dataset.lader = k[key];
     }
 }
@@ -192,7 +192,7 @@ function changeDicePrint(rollfirstDice, rollsecondDice) {
 
 function movePlayersPiece(piece, playersPosition,previousPosition) {
 
-    var fieldToMoveOn = smallDivsTab[playersPosition - 1];
+    let fieldToMoveOn = smallDivsTab[playersPosition - 1];
     fieldToMoveOn.appendChild(piece);
 
     if (smallDivsTab[previousPosition].firstElementChild) {
@@ -251,7 +251,7 @@ nextPlayerBtn.addEventListener("click", function (e) {
 
 btnRoll.addEventListener("click", function() {
 
-    var randomRollTimer = Math.floor(Math.random() * (1000 - 500 + 1)) + 500;
+    let randomRollTimer = Math.floor(Math.random() * (1000 - 500 + 1)) + 500;
     // Randomized number of seconds when roll animation last
 
 
@@ -259,7 +259,7 @@ btnRoll.addEventListener("click", function() {
    if (whoseTurn === 1 && playerRolledIsBlocked === false) {
 
 
-       var rollAnimation =  setInterval ( function() {
+       let rollAnimation =  setInterval ( function() {
 
            rollfirstDice = diceRoll();
            rollsecondDice = diceRoll();
@@ -388,7 +388,7 @@ btnRoll.addEventListener("click", function() {
 
 
 
-       var rollAnimation =  setInterval ( function() {
+       let rollAnimation =  setInterval ( function() {
 
            rollfirstDice = diceRoll();
            rollsecondDice = diceRoll();
@@ -532,7 +532,7 @@ playAgain.addEventListener("click", function () {
 
 checkTheRules.addEventListener("click", function () {
 
-    rules.style.top = '0';
+    rules.style.top = 0;
 
 });
 
@@ -542,7 +542,7 @@ closeCross.addEventListener("click", function () {
 
 });
 
-var error = document.querySelector(".error");
+let error = document.querySelector(".error");
 
 
 submit.addEventListener("click", function (e) {

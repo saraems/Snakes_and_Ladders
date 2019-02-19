@@ -1,9 +1,30 @@
-strong {
-  height: 100px;
-  background: rgba(red, 0.6);
-  border: 1px solid black;
-  display: block;
-}
+@import "general";
+@import "header";
+@import "game_panel";
+@import "game_board";
+@import "welcome";
+@import "players_input";
+@import "button";
+@import "rules";
+@import "winner";
 
 
-// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,0 @@
-.dice1, .dice2 {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100px;
-    width: 100px;
-    border: 1px solid black;
-    float: left;
-}

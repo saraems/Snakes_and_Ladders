@@ -1,0 +1,96 @@
+#welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome_popup {
+  background-color: rgba(221, 255, 204, 0.7);
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:90;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.welcome_popup__content {
+  height: 95vh;
+  width: 65%;
+  background-color: #e6ffe6;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+  z-index:9999;
+  position: fixed;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-around;
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+}
+
+#snake2_image {
+  height: 50%;
+  width: 60%;
+  background-image: url("/images/snake_2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  box-sizing: border-box;
+  margin: 50px 20px 0 20px;
+
+}
+.welcome_information_container {
+  width: 60%;
+  color: yellowgreen;
+  text-align: center;
+  padding: 65px 20px 56px 75px;
+  box-sizing: border-box;
+}
+.welcome_right_panel {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome_information_container h{
+  font-size: 40px;
+  display: block;
+}
+
+.welcome_information_container h1{
+  font-size: 2em;
+  display: block;
+  font-weight: lighter;
+  color: green;
+}
+
+.welcome_information_container h2 {
+  font-size: 1em;
+  display: block;
+  font-weight: lighter;
+  text-align: left;
+}
+
+.welcome_information_container ol {
+  text-align: left;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: 0.8em;
+}
+
+.welcome_information_container p  {
+  font-size: 0.7em;
+  text-align: left;
+}
+
+.welcome_information_container p span {
+  color: green;
+}

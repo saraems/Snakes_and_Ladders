@@ -1,0 +1,27 @@
+.green_btn {
+  background-color: green;
+  color: white;
+  font-size: 0.9em;
+  padding: 15px;
+  font-family: 'Fira Sans', sans-serif;
+  width: 80%;
+  border: none;
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  margin-top: 15px;
+  border-radius: 50px;
+  cursor: pointer;
+
+}
+
+.green_btn:hover {
+  background-color: greenyellow;
+  color:black;
+}
+
+button:active {
+  outline:none;
+}
+
+button {
+  outline:none;
+}

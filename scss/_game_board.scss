@@ -1,0 +1,30 @@
+.game_board {
+  width: 70%;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(188, 255, 188, 0.5);
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  border-radius: 5px;
+}
+
+.game_board__board_field {
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+}
+
+.game_board__board_fields_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game_board__board_field {
+  width: 480px;
+  height: 480px;
+  background-image: url("/images/snakesandladdersboard.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

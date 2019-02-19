@@ -1,0 +1,130 @@
+
+.game_panel {
+  width: 30%;
+  margin-right: 20px;
+  background-color: rgba(188, 255, 188, 0.5);
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  border-radius: 5px;
+}
+
+.game__panel_turn_indicator {
+  box-sizing: border-box;
+  height: 25%;
+  padding: 30px 30px 10px 30px;
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#whoseTurn {
+  color: blue;
+  font-weight: 700;
+}
+
+.game__panel_roll_btn_container {
+  display: flex;
+  height: 8%;
+  justify-content: center;
+  align-items: center;
+}
+
+.roll {
+  cursor: pointer;
+  background-color: blue;
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  border: none;
+  height: 80%;
+  width: 80%;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  float: left;
+  font-size: 1.3em;
+  border-radius: 50px;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+p {
+  display: block;
+  box-sizing: border-box;
+  margin: 0 0 7px 0;
+}
+
+
+.game__panel_next_player {
+  height: 8%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
+}
+
+.next_player_btn {
+  height: 60%;
+  width: 70%;
+  padding: 5px;
+  color: white;
+  background-color: deeppink;
+  border: none;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 16px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.game__dice_container {
+  height: 20%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dice {
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  margin: 5px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+}
+
+.game__panel_information_after_roll_container {
+  box-sizing: border-box;
+  height: 25%;
+  padding: 0 30px 0 30px;
+  font-size: 1em;
+  text-align: center;
+  transition: all .3s ease-in-out;
+}
+
+#game__panel_pieces_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5%;
+}
+
+.firstPlayer {
+  background-color: blue;
+  color: white;
+  height: 20px;
+  width: 20px;
+  margin-right: 3px;
+  border-radius: 50%;
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  z-index: 9;
+  display: block;
+}
+
+.secondPlayer {
+  background-color: deeppink;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+  z-index: 9;
+  display: block;
+}
