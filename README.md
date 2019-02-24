@@ -25,7 +25,7 @@ The order of the main script: import, variable, board construction, functions, p
 
 #### `What I learned when writing the project:`
 
-use time functions in JS (setInterval, setTimeout), modulation (export, import), use of flex-box, creating dialog windows, gulp configuration, forms validation, creating simple animations with CSS and JS, using git commands
+Using time functions in JS (setInterval, setTimeout), modulation (export, import), use of flex-box, creating dialog windows, gulp configuration, forms validation, creating simple animations with CSS and JS, using git commands
  
 
 
