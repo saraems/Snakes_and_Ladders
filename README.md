@@ -60,3 +60,4 @@ Funkcje które zostały wyeksportowane, wykorzystują zmienne globalne jednocze�
 
 Wykorzystania funkcji czasu w JS (setInterval, setTimeout), modulacji (export, import), zastosowania flex-boxa, tworzenia okien dialogowych, konfiguracji gulp, validacji formularzy, tworzenia prostych animacji w połączeniu CSS oraz JS, komend git
 
+![snakesandladdersboard](https://user-images.githubusercontent.com/43315389/53305777-b7fb0d00-3885-11e9-9d82-7e176ac6c1ad.jpg)
