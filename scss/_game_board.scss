@@ -28,3 +28,25 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+.boardRow {
+  height: 10%;
+  width: 480px;
+  display: flex;
+}
+
+.odd {
+  flex-direction: row;
+}
+
+.even {
+  flex-direction: row-reverse;
+}
+
+.cell {
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

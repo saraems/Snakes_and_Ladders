@@ -14,7 +14,7 @@ body {
       align-content: center;
   background-color: lightgreen;
   font-family: 'Fira Sans', sans-serif;
-  background-image: linear-gradient(-45deg, rgba(252, 255, 244, 0.3), rgba(233, 233, 206, 0.2)), url("/images/4K-Snakes-Wallpaper.jpg");
+  background-image: linear-gradient(-45deg, rgba(252, 255, 244, 0.3), rgba(233, 233, 206, 0.2)), url("../images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -270,6 +270,38 @@ p {
   background-size: contain;
   background-repeat: no-repeat; }
 
+.boardRow {
+  height: 10%;
+  width: 480px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.odd {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+
+.even {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse; }
+
+.cell {
+  height: 100%;
+  width: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
 #welcome {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -319,7 +351,7 @@ p {
 #snake2_image {
   height: 50%;
   width: 60%;
-  background-image: url("/images/snake_2.png");
+  background-image: url("../images/snake_2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -563,7 +595,7 @@ div#won {
 #snake_image {
   height: 50%;
   width: 50%;
-  background-image: url("/images/snake.png");
+  background-image: url("../images/snake.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

@@ -1,4 +1,6 @@
 
+import createGameBoard from "./createGameBoard.js"
+
 var firstPlayerPosition = 0;
 var secondPlayerPosition = 0;
 
@@ -15,9 +17,15 @@ var secondPlayersName;
 var firstPlayersColor = document.querySelector("#first_players_color");
 var secondPlayersColor = document.querySelector("#second_players_color");
 
+var gameBoard = document.querySelector("div.game_board__board_field");
 
 var snakes  = [{16: 6}, {46: 25}, {49: 11}, {62: 19}, {64: 60}, {74: 53}, {89: 68}, {92: 88}, {95: 75}, {99: 80}];
 var ladders = [{2: 38}, {7: 14}, {8: 31}, {15:26}, {21: 42}, {28: 84}, {36: 44}, {51: 67}, {71: 91}, {78: 98}, {87: 94}];
+
+var boardRowsArray = [];
+var cellsCounter = 0;
+var cellsArray = [];
+
 
 var rollfirstDice;
 var rollsecondDice;
@@ -40,12 +48,6 @@ var informationAfterRollContainer = document.querySelector(".game__panel_informa
 var firstPlayersPiece = document.querySelector('.firstPlayer');
 var secondPlayersPiece = document.querySelector('.secondPlayer');
 
-var gameBoard = document.querySelector("div.game_board__board_field");
-
-var smallDivsIdsCounter = 0;
-var smallDivsTab = [];
-var bigDivTabb = [];
-
 var checkTheRules = document.querySelector(".check_rules");
 var rules =document.querySelector(".rules");
 var closeCross = document.querySelector(".close_cross");
@@ -67,89 +69,68 @@ var diceRoll = function () {
     return Math.floor(Math.random() * (6 - 1) + 1);
 };
 
-
-// Algorithm creating matrix of board fields 10 x 10 for the game
-// 10 - rows, with a proper flex-box, properties indicating a field number increase way for children fields
+createGameBoard();
 
 for(var i = 0; i < 10; i++) {
 
-    var bigDiv = document.createElement("div");
+    var boardRow = document.createElement("div");
 
-    bigDiv.style.height = 10 + "%";
-    bigDiv.style.maxWidth = 480 + "px";
-
-    bigDiv.style.display = "flex";
-    bigDiv.id = 10 - i;
+    boardRow.id = 10 - i;
+    boardRow.classList.add('boardRow');
 
     if (i % 2 !== 0) {
-
-        bigDiv.className = "odd";
-        bigDiv.style.flexDirection = "row";
-
+        boardRow.classList.add('odd')
     } else {
-
-        bigDiv.className = "even";
-        bigDiv.style.flexDirection = "row-reverse";
-
+        boardRow.classList.add('even')
     }
 
-    gameBoard.appendChild(bigDiv);
-    bigDivTabb.push(bigDiv)
-
+    boardRowsArray.push(boardRow);
+    gameBoard.appendChild(boardRow)
 }
 
 
-bigDivTabb.reverse();
+boardRowsArray.reverse();
 
-// Creating columns (single cells) in each of created row
+// creating single cells in each row
 
 
-for (var i = 0; i < bigDivTabb.length; i++) {
-
+for (var i = 0; i < boardRowsArray.length; i++) {
 
     for(var j = 0; j < 10; j++) {
 
-        var smallDiv = document.createElement("div");
+        cellsCounter += 1;
 
-        smallDiv.style.height = 100 + "%";
-        smallDiv.style.width = 10 + "%";
+        var cell = document.createElement("div");
 
-        smallDiv.style.display = "flex";
-        smallDiv.style.justifyContent = "center";
-        smallDiv.style.alignItems = "center";
+        cell.classList.add('cell');
+        cell.id = cellsCounter;
 
-        smallDivsIdsCounter += 1;
-        smallDiv.id = smallDivsIdsCounter;
-
-        bigDivTabb[i].appendChild(smallDiv);
-        smallDivsTab.push(smallDiv)
+        cellsArray.push(cell);
+        boardRowsArray[i].appendChild(cell)
     }
 }
 
-// Marking snake-fields, on array of objects variable "snakes" base,
-// div's (cell) dataset contains field's number on which player piece should move, after stepping snake's field
+// marking snake-fields
 
 
-for(var i = 0; i < smallDivsTab.length ; i++) {
+for(var i = 0; i < cellsArray.length ; i++) {
 
     for (var key in snakes[i]) {
 
         var k = snakes[i];
-        smallDivsTab[key].dataset.snake = k[key];
+        cellsArray[key].dataset.snake = k[key];
     }
 }
 
 
-// Marking ladder-fields, on array of objects variable "laders" base,
-// div's (cell) dataset contains field's number on which player piece should move, after stepping ladder's field
+// marking ladder-fields
 
-
-for(var i = 0; i < smallDivsTab.length ; i++) {
+for(var i = 0; i < cellsArray.length ; i++) {
 
     for (var key in ladders[i]) {
 
         var k = ladders[i];
-        smallDivsTab[key].dataset.lader = k[key];
+        cellsArray[key].dataset.lader = k[key];
     }
 }
 
@@ -192,12 +173,12 @@ function changeDicePrint(rollfirstDice, rollsecondDice) {
 
 function movePlayersPiece(piece, playersPosition,previousPosition) {
 
-    var fieldToMoveOn = smallDivsTab[playersPosition - 1];
+    var fieldToMoveOn = cellsArray[playersPosition - 1];
     fieldToMoveOn.appendChild(piece);
 
-    if (smallDivsTab[previousPosition].firstElementChild) {
+    if (cellsArray[previousPosition].firstElementChild) {
 
-        smallDivsTab[previousPosition].firstElementChild.remove();
+        cellsArray[previousPosition].firstElementChild.remove();
 
     }
 }
@@ -316,9 +297,9 @@ btnRoll.addEventListener("click", function() {
        setTimeout(() => {
 
 
-           if (smallDivsTab[firstPlayerPosition].dataset.lader) {
+           if (cellsArray[firstPlayerPosition].dataset.lader) {
 
-               firstPlayerPosition = parseInt(smallDivsTab[firstPlayerPosition].dataset.lader);
+               firstPlayerPosition = parseInt(cellsArray[firstPlayerPosition].dataset.lader);
 
 
                if (rollsecondDice === rollfirstDice) {
@@ -337,10 +318,10 @@ btnRoll.addEventListener("click", function() {
 
                }
 
-           } else  if (smallDivsTab[firstPlayerPosition].dataset.snake) {
+           } else  if (cellsArray[firstPlayerPosition].dataset.snake) {
 
-               informationAfterRollContainer.innerHTML = `You stepped on a field nr with a snake. Go down on a field nr ${smallDivsTab[firstPlayerPosition].dataset.snake}.`;
-               firstPlayerPosition = parseInt(smallDivsTab[firstPlayerPosition].dataset.snake);
+               informationAfterRollContainer.innerHTML = `You stepped on a field nr with a snake. Go down on a field nr ${cellsArray[firstPlayerPosition].dataset.snake}.`;
+               firstPlayerPosition = parseInt(cellsArray[firstPlayerPosition].dataset.snake);
 
 
                if (rollsecondDice === rollfirstDice) {
@@ -439,9 +420,9 @@ btnRoll.addEventListener("click", function() {
        setTimeout(() => {
 
 
-           if (smallDivsTab[secondPlayerPosition].dataset.lader) {
+           if (cellsArray[secondPlayerPosition].dataset.lader) {
 
-               secondPlayerPosition = parseInt(smallDivsTab[secondPlayerPosition].dataset.lader);
+               secondPlayerPosition = parseInt(cellsArray[secondPlayerPosition].dataset.lader);
 
                movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
 
@@ -460,10 +441,10 @@ btnRoll.addEventListener("click", function() {
 
                }
 
-           } else if (smallDivsTab[secondPlayerPosition].dataset.snake) {
+           } else if (cellsArray[secondPlayerPosition].dataset.snake) {
 
-               informationAfterRollContainer.innerHTML = `You stepped on a field with snake. Go down on a field nr ${smallDivsTab[secondPlayerPosition].dataset.snake}.`;
-               secondPlayerPosition = parseInt(smallDivsTab[secondPlayerPosition].dataset.snake);
+               informationAfterRollContainer.innerHTML = `You stepped on a field with snake. Go down on a field nr ${cellsArray[secondPlayerPosition].dataset.snake}.`;
+               secondPlayerPosition = parseInt(cellsArray[secondPlayerPosition].dataset.snake);
 
                movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer);
 
@@ -521,6 +502,7 @@ playGameBtn.addEventListener("click", function () {
 
     welcomeDialog.style.display = "none";
     input.style.visibility = "visible";
+    console.log('clicked play');
 
 });
 
