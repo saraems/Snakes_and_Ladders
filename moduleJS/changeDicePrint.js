@@ -2,12 +2,12 @@
 
 export default function changeDicePrint(rollfirstDice, rollsecondDice, dice1, dice2) {
 
-    var one = 'url("./images/dices/dice_one.jpg")';
-    var two = 'url("./images/dices/dice_two.jpg")';
-    var three = 'url("./images/dices/dice_tree.jpg")';
-    var four = 'url("./images/dices/dice_four.jpg")';
-    var five = 'url("./images/dices/dice_five.jpg")';
-    var six = 'url("./images/dices/dice_six.jpg")';
+    var one = 'url("images/dices/dice_one.jpg")';
+    var two = 'url("images/dices/dice_two.jpg")';
+    var three = 'url("images/dices/dice_tree.jpg")';
+    var four = 'url("images/dices/dice_four.jpg")';
+    var five = 'url("images/dices/dice_five.jpg")';
+    var six = 'url("images/dices/dice_six.jpg")';
 
     if (rollfirstDice === 1) {
         dice1.style.backgroundImage = one

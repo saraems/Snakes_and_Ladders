@@ -179,7 +179,6 @@ var diceRoll = function () {
 };
 
 
-
 var nextPlayer = () => {
 
     setTimeout( function() {
