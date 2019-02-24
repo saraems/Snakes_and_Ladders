@@ -265,7 +265,7 @@ p {
 .game_board__board_field {
   width: 480px;
   height: 480px;
-  background-image: url("/images/snakesandladdersboard.jpg");
+  background-image: url("../images/snakesandladdersboard.jpg");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat; }
