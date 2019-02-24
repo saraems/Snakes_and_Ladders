@@ -9,17 +9,31 @@ export default function changeDicePrint(rollfirstDice, rollsecondDice, dice1, di
     var five = 'url("../images/dices/dice_five.jpg")';
     var six = 'url("../images/dices/dice_six.jpg")';
 
-    if (rollfirstDice === 1 || rollsecondDice === 1) {
-        rollfirstDice === 1 ? dice1.style.backgroundImage = one : dice2.style.backgroundImage = one
-    } if (rollfirstDice === 2 || rollsecondDice === 2) {
-        rollfirstDice === 2 ? dice1.style.backgroundImage = two : dice2.style.backgroundImage = two
-    } if (rollfirstDice === 3 || rollsecondDice === 3) {
-        rollfirstDice === 3 ? dice1.style.backgroundImage = three : dice2.style.backgroundImage = three
-    } if (rollfirstDice === 4 || rollsecondDice === 4) {
-        rollfirstDice === 4 ? dice1.style.backgroundImage = four : dice2.style.backgroundImage = four
-    } if (rollfirstDice === 5 || rollsecondDice === 5) {
-        rollfirstDice === 5 ? dice1.style.backgroundImage = five : dice2.style.backgroundImage = five
-    } if (rollfirstDice === 6 || rollsecondDice === 6) {
-        rollfirstDice === 6 ? dice1.style.backgroundImage = six : dice2.style.backgroundImage = six
+    if (rollfirstDice === 1) {
+        dice1.style.backgroundImage = one
+    } else if (rollfirstDice === 2) {
+        dice1.style.backgroundImage = two
+    } else if (rollfirstDice === 3) {
+        dice1.style.backgroundImage = three
+    } else if (rollfirstDice === 4) {
+        dice1.style.backgroundImage = four
+    } else if (rollfirstDice === 5) {
+        dice1.style.backgroundImage = five
+    } else if (rollfirstDice === 6) {
+        dice1.style.backgroundImage = six
+    }
+
+    if (rollsecondDice === 1) {
+        dice2.style.backgroundImage = one
+    } else if (rollsecondDice === 2) {
+        dice2.style.backgroundImage = two
+    } else if (rollsecondDice === 3) {
+        dice2.style.backgroundImage = three
+    } else if (rollsecondDice === 4) {
+        dice2.style.backgroundImage = four
+    } else if (rollsecondDice === 5) {
+        dice2.style.backgroundImage = five
+    } else if (rollsecondDice === 6) {
+        dice2.style.backgroundImage = six
     }
  }

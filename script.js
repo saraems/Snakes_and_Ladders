@@ -1,6 +1,6 @@
 
-import changeDicePrint from './changeDicePrint.js'
-import movePlayersPiece from './movePlayersPiece.js'
+import changeDicePrint from './moduleJS/changeDicePrint.js'
+import movePlayersPiece from './moduleJS/movePlayersPiece.js'
 
 var firstPlayerPosition = 0;
 var secondPlayerPosition = 0;
@@ -132,9 +132,12 @@ for(var i = 0; i < cellsArray.length ; i++) {
 }
 
 
+
 //form validation players' names and pieces colors inputs required
 
 var inputsValidation = (e) => {
+
+    var error = document.querySelector('div.error');
 
     e.preventDefault();
     var isValid = false;
@@ -474,7 +477,6 @@ btnRoll.addEventListener("click", function() {
 
 
 
-
 // Actions after pop-ups (dialogue windows) buttons click
 
 playGameBtn.addEventListener("click", function () {
@@ -489,17 +491,4 @@ closeCross.addEventListener("click", function () {rules.style.top = `-70vh`});
 submit.addEventListener("click", inputsValidation);
 
 playAgain.addEventListener("click", function () {window.location.reload()});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
