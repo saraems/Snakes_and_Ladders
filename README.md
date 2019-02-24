@@ -1,6 +1,6 @@
-# Snakes_and_Ladders | eng
+# Snakes and Ladders | eng
 Classic board game
 
 
-# Snakes_and_Ladders | pl
+# Snakes and Ladders | pl
 Klasyczna gra planszowa
