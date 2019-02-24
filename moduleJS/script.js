@@ -218,6 +218,9 @@ var nextPlayer = () => {
 };
 
 
+
+//Information for players during game
+
 var informationLadderAndEqualDices = (container, rollsecondDice, rollfirstDice, playerPosition) => {
     container.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice} </span><br></p> Wow, you rolled two times  ${rollfirstDice}, stepped on the ladder field and moved on field nr ${playerPosition}, now roll your dices once more.`
 };
@@ -241,6 +244,7 @@ var informationEqualDices = (container, rollsecondDice, rollfirstDice) => {
 var informationMoveForward = (container, rollsecondDice, rollfirstDice, playerPosition, previousPlayersPosition, moveForward) => {
     container.innerHTML = `<p> = <span class="move_forward">${rollsecondDice+rollfirstDice}</span><br></p>You moved <span class="move_forward">${moveForward}</span> fields forward, on field nr <span id="players_position">${playerPosition}</span>. <br><br>Your previous position<br> field nr ${previousPlayersPosition}.`;
 };
+
 
 // Next Player, switch players and unblock roll button for next player
 
