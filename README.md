@@ -28,7 +28,7 @@ The order of the main script: import, variable, board construction, functions, p
 Using time functions in JS (setInterval, setTimeout), modulation (export, import), use of flex-box, creating dialog windows, gulp configuration, forms validation, creating simple animations with CSS and JS, using git commands
  
 
-
+----------------------------------------------------------
 
 # Węże i Drabiny | PL | [GitHubPages](https://saraems.github.io/Snakes_and_Ladders/)
 Klasyczna gra planszowa
