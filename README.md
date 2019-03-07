@@ -1,4 +1,4 @@
-# Snakes and Ladders | ENG
+# Snakes and Ladders | ENG | [GitHubPages](https://saraems.github.io/Snakes_and_Ladders/)
 Classic board game
 
 The game has been written as a my second project IN Vanilla.js, ScsS, HTML and Gulp task runer. 
@@ -30,7 +30,7 @@ Using time functions in JS (setInterval, setTimeout), modulation (export, import
 
 
 
-# Węże i Drabiny | PL
+# Węże i Drabiny | PL | [GitHubPages](https://saraems.github.io/Snakes_and_Ladders/)
 Klasyczna gra planszowa
 
 Gra napisana jako drugi samodzielny projekt z wykorzystaniem Vanilla.js, ScsS, HTML oraz Gulp task runer. 
@@ -60,6 +60,3 @@ Funkcje które zostały wyeksportowane, wykorzystują zmienne globalne jednocze�
 
 Wykorzystania funkcji czasu w JS (setInterval, setTimeout), modulacji (export, import), zastosowania flex-boxa, tworzenia okien dialogowych, konfiguracji gulp, validacji formularzy, tworzenia prostych animacji w połączeniu CSS oraz JS, komend git
 
-
-
-![snakesandladdersboard](https://user-images.githubusercontent.com/43315389/53305777-b7fb0d00-3885-11e9-9d82-7e176ac6c1ad.jpg)

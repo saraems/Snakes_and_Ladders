@@ -360,7 +360,9 @@ btnRoll.addEventListener("click", function() {
             }, 1500);
 
 
-            setTimeout(() => {movePlayersPiece(firstPlayersPiece, firstPlayerPosition, previousPositionFirstPlayer, cellsArray)}, 2800);
+            setTimeout(() => {
+                movePlayersPiece(firstPlayersPiece, firstPlayerPosition, previousPositionFirstPlayer, cellsArray)
+                nextPlayerBtn.style.transform = 'scale(1.2)'}, 2800);
 
 
         } else if (whoseTurn === 2 && playerRolledIsBlocked === false) {
@@ -468,8 +470,9 @@ btnRoll.addEventListener("click", function() {
             }, 1000);
 
 
-            setTimeout(() => {movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer, cellsArray)}, 2800);
-
+            setTimeout(() => {
+                movePlayersPiece(secondPlayersPiece, secondPlayerPosition, previousPositionSecondPlayer, cellsArray)
+                nextPlayerBtn.style.transform = 'scale(1.2)'}, 2800);
         }
     }
 );
